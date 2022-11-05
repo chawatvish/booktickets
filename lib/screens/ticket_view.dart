@@ -6,16 +6,18 @@ import 'package:gap/gap.dart';
 import '../widgets/thick_container.dart';
 
 class TicketView extends StatelessWidget {
-  const TicketView({Key? key}) : super(key: key);
+  final Map<String, dynamic> ticket;
+
+  const TicketView({Key? key, required this.ticket}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = AppLayout.getSize(context);
     return SizedBox(
-      width: size.width,
+      width: size.width * 0.85,
       height: 200,
       child: Container(
-        margin: const EdgeInsets.only(left: 16),
+        margin: const EdgeInsets.only(right: 16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -35,7 +37,7 @@ class TicketView extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'NYC',
+                        '${ticket['from']['code']}',
                         style:
                             Styles.headLineStyle3.copyWith(color: Colors.white),
                       ),
@@ -49,8 +51,6 @@ class TicketView extends StatelessWidget {
                               child: LayoutBuilder(
                                 builder: (BuildContext context,
                                     BoxConstraints constraints) {
-                                  print(
-                                      "the width is ${constraints.constrainWidth()}");
                                   return Flex(
                                     direction: Axis.horizontal,
                                     mainAxisAlignment:
@@ -87,7 +87,7 @@ class TicketView extends StatelessWidget {
                       const ThickContainer(),
                       Expanded(child: Container()),
                       Text(
-                        'LDN',
+                        '${ticket['to']['code']}',
                         style:
                             Styles.headLineStyle3.copyWith(color: Colors.white),
                       ),
@@ -100,20 +100,20 @@ class TicketView extends StatelessWidget {
                       SizedBox(
                         width: 100,
                         child: Text(
-                          'New-York',
+                          '${ticket['from']['name']}',
                           style: Styles.headLineStyle4
                               .copyWith(color: Colors.white),
                         ),
                       ),
                       Text(
-                        '8H 30M',
+                        '${ticket['flying_time']}',
                         style:
                             Styles.headLineStyle4.copyWith(color: Colors.white),
                       ),
                       SizedBox(
                         width: 100,
                         child: Text(
-                          'London',
+                          '${ticket['to']['code']}',
                           style: Styles.headLineStyle4
                               .copyWith(color: Colors.white),
                           textAlign: TextAlign.end,
@@ -127,7 +127,131 @@ class TicketView extends StatelessWidget {
             /*
             showing the read part of the card/ticket
              */
-            Container(),
+            Container(
+              color: Styles.orangeColor,
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: 10,
+                    height: 20,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10)),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: LayoutBuilder(
+                        builder:
+                            (BuildContext context, BoxConstraints constraint) {
+                          return Flex(
+                            direction: Axis.horizontal,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: List.generate(
+                              (constraint.constrainWidth() / 15).floor(),
+                              (index) => const SizedBox(
+                                width: 5,
+                                height: 1,
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                    height: 20,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            /*
+            showing bottom part of the orange
+             */
+            Container(
+              padding: const EdgeInsets.only(
+                  left: 16, top: 10, right: 16, bottom: 16),
+              decoration: BoxDecoration(
+                color: Styles.orangeColor,
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(21),
+                    bottomRight: Radius.circular(21)),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 100,
+                        child: Text(
+                          '${ticket['date']}',
+                          style: Styles.headLineStyle4
+                              .copyWith(color: Colors.white),
+                        ),
+                      ),
+                      Text('${ticket['departure_time']}',
+                          style: Styles.headLineStyle4
+                              .copyWith(color: Colors.white)),
+                      SizedBox(
+                        width: 100,
+                        child: Text(
+                          '${ticket['number']}',
+                          style: Styles.headLineStyle4
+                              .copyWith(color: Colors.white),
+                          textAlign: TextAlign.end,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 100,
+                        child: Text(
+                          'Date',
+                          style: Styles.headLineStyle4
+                              .copyWith(color: Colors.white),
+                        ),
+                      ),
+                      Text('Departure time',
+                          style: Styles.headLineStyle4
+                              .copyWith(color: Colors.white)),
+                      SizedBox(
+                        width: 100,
+                        child: Text(
+                          'Number',
+                          style: Styles.headLineStyle4
+                              .copyWith(color: Colors.white),
+                          textAlign: TextAlign.end,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
