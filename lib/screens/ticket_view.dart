@@ -197,55 +197,51 @@ class TicketView extends StatelessWidget {
                     bottomLeft: Radius.circular(21),
                     bottomRight: Radius.circular(21)),
               ),
-              child: Column(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          '${ticket['date']}',
-                          style: Styles.headLineStyle4
-                              .copyWith(color: Colors.white),
-                        ),
+                      Text(
+                        '${ticket['date']}',
+                        style:
+                            Styles.headLineStyle4.copyWith(color: Colors.white),
                       ),
-                      Text('${ticket['departure_time']}',
-                          style: Styles.headLineStyle4
-                              .copyWith(color: Colors.white)),
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          '${ticket['number']}',
-                          style: Styles.headLineStyle4
-                              .copyWith(color: Colors.white),
-                          textAlign: TextAlign.end,
-                        ),
-                      ),
+                      Text(
+                        'Date',
+                        textAlign: TextAlign.start,
+                        style:
+                            Styles.headLineStyle4.copyWith(color: Colors.white),
+                      )
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Center(
+                    child: Column(
+                      children: [
+                        Text('${ticket['departure_time']}',
+                            style: Styles.headLineStyle4
+                                .copyWith(color: Colors.white)),
+                        Text('Departure time',
+                            style: Styles.headLineStyle4
+                                .copyWith(color: Colors.white))
+                      ],
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          'Date',
-                          style: Styles.headLineStyle4
-                              .copyWith(color: Colors.white),
-                        ),
+                      Text(
+                        '${ticket['number']}',
+                        style:
+                            Styles.headLineStyle4.copyWith(color: Colors.white),
+                        textAlign: TextAlign.end,
                       ),
-                      Text('Departure time',
-                          style: Styles.headLineStyle4
-                              .copyWith(color: Colors.white)),
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          'Number',
-                          style: Styles.headLineStyle4
-                              .copyWith(color: Colors.white),
-                          textAlign: TextAlign.end,
-                        ),
+                      Text(
+                        'Number',
+                        style:
+                            Styles.headLineStyle4.copyWith(color: Colors.white),
+                        textAlign: TextAlign.end,
                       ),
                     ],
                   ),
