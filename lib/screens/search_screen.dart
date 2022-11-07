@@ -92,7 +92,7 @@ class SearchScreen extends StatelessWidget {
               Container(
                 width: size.width * .42,
                 padding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -112,7 +112,7 @@ class SearchScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                         image: const DecorationImage(
                           fit: BoxFit.cover,
-                          image:,
+                          image: AssetImage('assets/images/sit.jpg'),
                         ),
                       ),
                     ),
