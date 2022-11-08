@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:booktickets_flutter/utils/app_layout.dart';
 import 'package:booktickets_flutter/utils/app_style.dart';
 import 'package:flutter/material.dart';
