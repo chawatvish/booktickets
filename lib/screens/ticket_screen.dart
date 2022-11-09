@@ -12,6 +12,7 @@ class TicketScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Styles.bgColor,
       body: Stack(
         children: [
           ListView(
